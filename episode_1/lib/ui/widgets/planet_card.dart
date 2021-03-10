@@ -15,7 +15,7 @@ class PlanetCard extends StatelessWidget {
   Widget _buildPlanet(double height) {
     return Positioned(
       bottom: 2,
-      right: 5,
+      left: 5,
       child: Hero(
         tag: planet.name,
         child: Image.asset(
@@ -28,14 +28,14 @@ class PlanetCard extends StatelessWidget {
 
   Widget _buildPrice() {
     return Positioned(
-      top: 10,
+      top: 34,
       right: 14,
       child: Text(
         '${planet.price}\$',
         style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.bold,
-          color: Colors.amber,
+          color: Colors.yellow,
         ),
       ),
     );
@@ -43,7 +43,7 @@ class PlanetCard extends StatelessWidget {
 
   Widget _buildName() {
     return Padding(
-      padding: EdgeInsets.only(left: 16, top: 24),
+      padding: EdgeInsets.only(left: 56, top: 10),
       child: Text(
         planet.name,
         style: TextStyle(
@@ -63,7 +63,7 @@ class PlanetCard extends StatelessWidget {
         return ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: Material(
-            color: Colors.teal,
+            color: Colors.blueAccent,
             child: InkWell(
               onTap: onTap,
               child: Stack(
