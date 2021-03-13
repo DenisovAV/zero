@@ -19,8 +19,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<PlanetBloc>(
-      create: (_) => PlanetBloc()..add(PlanetEvent.initializing),
-      child: PlanetsRoot(),
-    );
+        create: (_) => PlanetBloc()..add(PlanetEvent.initializing),
+        child: BlocBuilder<PlanetBloc, PlanetState>(builder: (context, state) {
+          if (state is PlanetLoadedState) {
+            return PlanetsRoot(
+              planets: state.planets,
+            );
+          } else {
+            return const Center(
+              key: const ValueKey('loading'),
+              child: CircularProgressIndicator(),
+            );
+          }
+        }));
   }
 }

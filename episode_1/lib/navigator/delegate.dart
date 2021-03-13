@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:episode_1/business/planet_bloc.dart';
 import 'package:episode_1/domain/planet.dart';
 import 'package:episode_1/navigator/parser.dart';
 import 'package:episode_1/ui/planet_screen.dart';
@@ -11,25 +10,10 @@ class PlanetRouterDelegate extends RouterDelegate<PlanetRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PlanetRoutePath> {
   final GlobalKey<NavigatorState> navigatorKey;
 
-  PlanetBloc _bloc;
   Planet? _selectedPlanet;
-  List<Planet> planets = [];
-  late StreamSubscription<PlanetState> _subscription;
+  List<Planet> planets;
 
-  PlanetRouterDelegate(this._bloc) : navigatorKey = GlobalKey<NavigatorState>() {
-    _subscription = _bloc.listen((state) {
-      if (state is PlanetLoadedState) {
-        planets = state.planets;
-        notifyListeners();
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _subscription.cancel();
-    super.dispose();
-  }
+  PlanetRouterDelegate(this.planets) : navigatorKey = GlobalKey<NavigatorState>();
 
   PlanetRoutePath get currentConfiguration {
     return _selectedPlanet == null
@@ -44,7 +28,10 @@ class PlanetRouterDelegate extends RouterDelegate<PlanetRoutePath>
       pages: [
         MaterialPage(
           key: ValueKey('PlanetsListPage'),
-          child: PlanetScreen(_handlePlanetTapped),
+          child: PlanetScreen(
+            onTapped: _handlePlanetTapped,
+            planets: planets,
+          ),
         ),
         if (_selectedPlanet != null) PlanetDetailsPage(planet: _selectedPlanet!)
       ],
@@ -53,7 +40,6 @@ class PlanetRouterDelegate extends RouterDelegate<PlanetRoutePath>
           return false;
         }
 
-        // Update the list of pages by setting _selectedBook to null
         _selectedPlanet = null;
         notifyListeners();
 
@@ -72,6 +58,7 @@ class PlanetRouterDelegate extends RouterDelegate<PlanetRoutePath>
     if (path.isDetailsPage) {
       _selectedPlanet = planets.firstWhere((element) => element.name.toLowerCase() == path.name);
     } else {
+      print(_selectedPlanet);
       _selectedPlanet = null;
     }
   }
