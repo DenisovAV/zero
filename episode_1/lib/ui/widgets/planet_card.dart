@@ -5,11 +5,11 @@ class PlanetCard extends StatelessWidget {
   const PlanetCard(
     this.planet, {
     this.onTap,
-    @required this.index,
+    required this.index,
   });
 
   final int index;
-  final Function onTap;
+  final Function()? onTap;
   final Planet planet;
 
   Widget _buildPlanet(double height) {

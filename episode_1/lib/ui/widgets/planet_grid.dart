@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 class PlanetGrid extends StatelessWidget {
   PlanetGrid({
-    @required this.planets,
-    @required this.onTapPlanet,
+    required this.planets,
+    required this.onTapPlanet,
   });
 
   final controller = ScrollController();
@@ -36,12 +36,9 @@ class PlanetGrid extends StatelessWidget {
                 mainAxisSpacing: 10,
               ),
               delegate: SliverChildBuilderDelegate(
-                (context, index) => PlanetCard(
-                  planets[index],
-                  index: index,
-                  onTap: () => onTapPlanet(planets[index]),
-                ),
-                childCount: planets?.length ?? 0,
+                (context, index) => PlanetCard(planets[index],
+                    index: index, onTap: () => onTapPlanet(planets[index])),
+                childCount: planets.length,
               ),
             ),
           )

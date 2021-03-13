@@ -2,9 +2,8 @@ import 'package:episode_1/domain/planet.dart';
 import 'package:flutter/material.dart';
 
 class PlanetDetails extends StatelessWidget {
-  PlanetDetails(this.planet);
-
   final Planet planet;
+  PlanetDetails(this.planet);
 
   @override
   Widget build(BuildContext context) {

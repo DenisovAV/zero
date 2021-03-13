@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Planet {
   final String name;
   final String image;
@@ -7,10 +5,10 @@ class Planet {
   final String description;
 
   const Planet({
-    @required this.name,
-    @required this.image,
-    @required this.price,
-    @required this.description,
+    required this.name,
+    required this.image,
+    required this.price,
+    required this.description,
   });
 
   @override
@@ -24,8 +22,7 @@ class Planet {
           description == other.description;
 
   @override
-  int get hashCode =>
-      name.hashCode ^ image.hashCode ^ price.hashCode ^ description.hashCode;
+  int get hashCode => name.hashCode ^ image.hashCode ^ price.hashCode ^ description.hashCode;
 
   @override
   String toString() {

@@ -1,11 +1,12 @@
 import 'package:episode_1/business/planet_bloc.dart';
-import 'package:episode_1/ui/widgets/planet_details.dart';
+import 'package:episode_1/domain/planet.dart';
 import 'package:episode_1/ui/widgets/planet_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PlanetScreen extends StatefulWidget {
-  const PlanetScreen();
+  final ValueChanged<Planet> onTapped;
+  const PlanetScreen(this.onTapped);
 
   @override
   State<StatefulWidget> createState() => _PlanetScreenState();
@@ -29,14 +30,7 @@ class _PlanetScreenState extends State<PlanetScreen> {
       child: BlocBuilder<PlanetBloc, PlanetState>(builder: (context, state) {
         if (state is PlanetLoadedState) {
           return PlanetGrid(
-            planets: state.planets,
-            onTapPlanet: (planet) {
-              Navigator.of(context)
-                  .push(new MaterialPageRoute(builder: (context) {
-                return PlanetDetails(planet);
-              }));
-            },
-          );
+              planets: state.planets, onTapPlanet: (planet) => widget.onTapped(planet));
         } else {
           return const Center(
             key: const ValueKey('loading'),
