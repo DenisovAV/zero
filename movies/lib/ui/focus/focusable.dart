@@ -47,20 +47,11 @@ class _FocusableWidgetState extends State<FocusableWidget> {
   }
 
   bool _onKeyHandler(FocusNode node, RawKeyEvent event) {
-    final isKeyDownEvent = event is RawKeyDownEvent;
-
-    final hasSubmitIntent = event.hasSubmitIntent;
-
-    if (!isKeyDownEvent && hasSubmitIntent) {
-      _onSubmit();
+    if (event is RawKeyDownEvent) {
       return true;
     }
-
-    if (event.hasBrowseBackIntent) {
-      return false;
-    }
-
-    if (isKeyDownEvent) {
+    if (event.hasSubmitIntent) {
+      _onSubmit();
       return true;
     }
     return false;
