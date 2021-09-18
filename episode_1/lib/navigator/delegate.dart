@@ -58,7 +58,6 @@ class PlanetRouterDelegate extends RouterDelegate<PlanetRoutePath>
     if (path.isDetailsPage) {
       _selectedPlanet = planets.firstWhere((element) => element.name.toLowerCase() == path.name);
     } else {
-      print(_selectedPlanet);
       _selectedPlanet = null;
     }
   }

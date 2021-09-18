@@ -1,4 +1,4 @@
-package com.zero.liveshow.episode.episode_1
+package com.zero.liveshow.planets
 
 import io.flutter.embedding.android.FlutterActivity
 
