@@ -2,8 +2,8 @@ import 'package:episode_1/domain/planet.dart';
 import 'package:episode_1/services/planet_service.dart';
 
 class DummyPlanetService implements PlanetService {
-  Future<List<Planet>> getPlanets() async {
-    return [
+  Stream<List<Planet>> getPlanets() async* {
+    yield [
       Planet(
           name: 'Mercury',
           price: '100',

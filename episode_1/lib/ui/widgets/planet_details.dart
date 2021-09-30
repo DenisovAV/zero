@@ -16,7 +16,7 @@ class PlanetDetails extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               background: Hero(
                 tag: planet.name,
-                child: Image.asset(
+                child: Image.network(
                   planet.image,
                 ),
               ),
@@ -39,10 +39,13 @@ class PlanetDetails extends StatelessWidget {
                 height: 20.0,
               ),
               Center(
-                child: Text(
-                  planet.description,
-                  style: TextStyle(
-                    fontSize: 16.0,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    planet.description,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
                   ),
                 ),
               ),

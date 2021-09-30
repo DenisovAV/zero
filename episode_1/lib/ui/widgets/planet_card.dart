@@ -18,7 +18,7 @@ class PlanetCard extends StatelessWidget {
       left: 5,
       child: Hero(
         tag: planet.name,
-        child: Image.asset(
+        child: Image.network(
           planet.image,
           width: height * 0.75,
         ),

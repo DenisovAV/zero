@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 class PlanetsRoot extends StatefulWidget {
   final List<Planet> planets;
 
-  PlanetsRoot({required this.planets});
+  PlanetsRoot({
+    required this.planets,
+  });
 
   @override
   _PlanetsRootState createState() => _PlanetsRootState();
@@ -19,7 +21,9 @@ class _PlanetsRootState extends State<PlanetsRoot> {
   @override
   void initState() {
     super.initState();
-    planetRouterDelegate = PlanetRouterDelegate(widget.planets);
+    planetRouterDelegate = PlanetRouterDelegate(
+      widget.planets,
+    );
     planetInformationParser = PlanetInformationParser();
   }
 
